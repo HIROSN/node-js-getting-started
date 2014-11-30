@@ -46,14 +46,12 @@ $(function() {
   $('#notes').on('click', '.note', function() {
     var $this = $(this);
 
-    $('.note').
-      removeClass('editor').
-      removeAttr('contenteditable');
+    $('.note').removeClass('editor')
+    .removeAttr('contenteditable');
 
-    $this.
-      attr('contenteditable', true).
-      focus().
-      addClass('editor');
+    $this.attr('contenteditable', true)
+    .focus()
+    .addClass('editor');
 
     $cmds.insertAfter($this).slideDown('fast');
     fixEditorWidth();
@@ -78,9 +76,8 @@ $(function() {
     if (note) {
       apiNote(jwt, 'PUT', note, $note.attr('id')).done(function() {
         $cmds.slideUp('fast', function() {
-          $note.
-            removeClass('editor').
-            removeAttr('contenteditable');
+          $note.removeClass('editor')
+          .removeAttr('contenteditable');
         });
       });
     }

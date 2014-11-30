@@ -15,9 +15,9 @@ chai.use(chaihttp);
 
 describe('Basic notes CRUD', function() {
   it('should not create a user without a password', function(done) {
-    chai.request(server).
-    post('/api/users').
-    send({
+    chai.request(server)
+    .post('/api/users')
+    .send({
       email: 'user@test.com'
     }).end(function(err, res) {
       expect(err).equals(null);
@@ -28,9 +28,9 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should not create a user with a weak password', function(done) {
-    chai.request(server).
-    post('/api/users').
-    send({
+    chai.request(server)
+    .post('/api/users')
+    .send({
       email: 'user@test.com',
       password: 'Abc123',
       confirm: 'Abc123'
@@ -43,9 +43,9 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should not create user when password is not confirmed', function(done) {
-    chai.request(server).
-    post('/api/users').
-    send({
+    chai.request(server)
+    .post('/api/users')
+    .send({
       email: 'user@test.com',
       password: 'passWord1',
       confirm: 'passWord2'
@@ -58,9 +58,9 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to create a user', function(done) {
-    chai.request(server).
-    post('/api/users').
-    send({
+    chai.request(server)
+    .post('/api/users')
+    .send({
       email: 'user@test.com',
       password: 'passWord1',
       confirm: 'passWord1'
@@ -76,9 +76,9 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to create another user', function(done) {
-    chai.request(server).
-    post('/api/users').
-    send({
+    chai.request(server)
+    .post('/api/users')
+    .send({
       email: 'user2@test.com',
       password: 'passWord1',
       confirm: 'passWord1'
@@ -94,10 +94,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to create a note', function(done) {
-    chai.request(server).
-    post('/api/notes').
-    send({noteBody: 'hello world', jwt: jwt1}).
-    end(function(err, res) {
+    chai.request(server)
+    .post('/api/notes')
+    .send({noteBody: 'hello world', jwt: jwt1})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);
@@ -114,10 +114,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to create another note', function(done) {
-    chai.request(server).
-    post('/api/notes').
-    send({noteBody: 'hello world user2', jwt: jwt2}).
-    end(function(err, res) {
+    chai.request(server)
+    .post('/api/notes')
+    .send({noteBody: 'hello world user2', jwt: jwt2})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);
@@ -134,9 +134,9 @@ describe('Basic notes CRUD', function() {
   });
 
   it('is not authorized to get an index without JWT', function(done) {
-    chai.request('http://localhost:3000').
-    post('/api/notes/get').
-    end(function(err, res) {
+    chai.request('http://localhost:3000')
+    .post('/api/notes/get')
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
@@ -145,10 +145,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('is authorized to get an index with JWT', function(done) {
-    chai.request('http://localhost:3000').
-    post('/api/notes/get').
-    send({jwt: jwt1}).
-    end(function(err, res) {
+    chai.request('http://localhost:3000')
+    .post('/api/notes/get')
+    .send({jwt: jwt1})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);
@@ -161,10 +161,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to get a single note', function(done) {
-    chai.request(server).
-    post('/api/notes/get' + id1).
-    send({jwt: jwt1}).
-    end(function(err, res) {
+    chai.request(server)
+    .post('/api/notes/get' + id1)
+    .send({jwt: jwt1})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);
@@ -179,10 +179,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to update a note', function(done) {
-    chai.request(server).
-    put('/api/notes' + id1).
-    send({noteBody: 'new note body', jwt: jwt1}).
-    end(function(err, res) {
+    chai.request(server)
+    .put('/api/notes' + id1)
+    .send({noteBody: 'new note body', jwt: jwt1})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);
@@ -197,10 +197,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to delete a note', function(done) {
-    chai.request(server).
-    delete('/api/notes' + id1).
-    send({jwt: jwt1}).
-    end(function(err, res) {
+    chai.request(server)
+    .delete('/api/notes' + id1)
+    .send({jwt: jwt1})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);
@@ -209,10 +209,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to delete the 2nd note', function(done) {
-    chai.request(server).
-    delete('/api/notes' + id2).
-    send({jwt: jwt2}).
-    end(function(err, res) {
+    chai.request(server)
+    .delete('/api/notes' + id2)
+    .send({jwt: jwt2})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(200);
@@ -221,10 +221,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should reject creating a note with invalid words', function(done) {
-    chai.request(server).
-    post('/api/notes').
-    send({noteBody: 'jap', jwt: jwt1}).
-    end(function(err, res) {
+    chai.request(server)
+    .post('/api/notes')
+    .send({noteBody: 'jap', jwt: jwt1})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
@@ -233,13 +233,13 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should reject a note longer than 140 characters', function(done) {
-    chai.request(server).
-    post('/api/notes').
-    send({noteBody:
+    chai.request(server)
+    .post('/api/notes')
+    .send({noteBody:
       '12345678901234567890123456789012345678901234567890' +
       '12345678901234567890123456789012345678901234567890' +
-      '12345678901234567890123456789012345678901234567890', jwt: jwt1}).
-    end(function(err, res) {
+      '12345678901234567890123456789012345678901234567890', jwt: jwt1})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
@@ -248,10 +248,10 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should reject an empty note', function(done) {
-    chai.request(server).
-    post('/api/notes').
-    send({noteBody: '', jwt: jwt1}).
-    end(function(err, res) {
+    chai.request(server)
+    .post('/api/notes')
+    .send({noteBody: '', jwt: jwt1})
+    .end(function(err, res) {
       expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
@@ -260,9 +260,9 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to delete a user', function(done) {
-    chai.request(server).
-    delete('/api/users').
-    send({
+    chai.request(server)
+    .delete('/api/users')
+    .send({
       email: 'user@test.com',
       password: 'passWord1'
     }).end(function(err, res) {
@@ -274,9 +274,9 @@ describe('Basic notes CRUD', function() {
   });
 
   it('should be able to delete the 2nd user', function(done) {
-    chai.request(server).
-    delete('/api/users').
-    send({
+    chai.request(server)
+    .delete('/api/users')
+    .send({
       email: 'user2@test.com',
       password: 'passWord1'
     }).end(function(err, res) {

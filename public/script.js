@@ -97,14 +97,12 @@ $(function() {
   $('#notes').on('click', '.note', function() {
     var $this = $(this);
 
-    $('.note').
-      removeClass('editor').
-      removeAttr('contenteditable');
+    $('.note').removeClass('editor')
+    .removeAttr('contenteditable');
 
-    $this.
-      attr('contenteditable', true).
-      focus().
-      addClass('editor');
+    $this.attr('contenteditable', true)
+    .focus()
+    .addClass('editor');
 
     $cmds.insertAfter($this).slideDown('fast');
     fixEditorWidth();
@@ -129,9 +127,8 @@ $(function() {
     if (note) {
       apiNote(jwt, 'PUT', note, $note.attr('id')).done(function() {
         $cmds.slideUp('fast', function() {
-          $note.
-            removeClass('editor').
-            removeAttr('contenteditable');
+          $note.removeClass('editor')
+          .removeAttr('contenteditable');
         });
       });
     }
@@ -228,16 +225,15 @@ module.exports = function(jwt, type, note, $editor) {
   var showSignIn = require('./show_sign_in');
 
   apiNote(jwt, type, note).then(function(results) {
-    var template = Handlebars.compile(
-      $('#notes-template').html());
+    var template = Handlebars.compile($('#notes-template').html());
 
-    $(template(results)).
-    hide().
-    appendTo($('#notes')).
-    slideDown('fast');
+    $(template(results)).hide()
+    .appendTo($('#notes'))
+    .slideDown('fast');
 
     if ($editor) { $editor.text(''); }
-  }).fail(function() {
+  })
+  .fail(function() {
     showSignIn();
   });
 
