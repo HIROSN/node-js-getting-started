@@ -1,10 +1,13 @@
+## Notes
 <img src="https://travis-ci.org/HIROSN/node-js-getting-started.svg" alt="Travis CI Badge"></img>
 
-## Create a JSON api with a Mongo Persistence Layer and get it running on Heroku
-https://hirosn-node-js-getting-started.herokuapp.com/
+Upstream: https://hirosn-node-js-getting-started.herokuapp.com/
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
-This application support the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article.
+PaaS: Heroku
+
+Dependencies: express, body-parser, mongoose, jwt-simple, bcrypt-nodejs, moment, passport
+
+Tests: chai-http
 
 ## Running Locally
 
