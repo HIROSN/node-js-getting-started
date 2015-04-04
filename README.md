@@ -9,6 +9,12 @@ Dependencies: express, body-parser, mongoose, jwt-simple, bcrypt-nodejs, moment,
 
 Tests: chai-http
 
+Demonstrates:
+- MongoDB CRUD
+- Auth using JWT and Passport
+- Node modules and Browserify
+- Handlebars
+
 ## Running Locally
 
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
