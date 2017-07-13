@@ -19,8 +19,7 @@ module.exports = function(jwt, type, note, $editor) {
 
   if (jwt) {
     $('#post').removeClass('disabled');
-  }
-  else {
+  } else {
     $('#post').addClass('disabled');
   }
 };

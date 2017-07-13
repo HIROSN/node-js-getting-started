@@ -21,8 +21,7 @@ $(function() {
     }).always(function() {
       showNotes(jwt);
     });
-  }
-  else {
+  } else {
     showSignIn();
   }
 

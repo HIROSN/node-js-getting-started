@@ -20,7 +20,6 @@ describe('Basic notes CRUD', function() {
     .send({
       email: 'user@test.com'
     }).end(function(err, res) {
-      expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
       done();
@@ -35,7 +34,6 @@ describe('Basic notes CRUD', function() {
       password: 'Abc123',
       confirm: 'Abc123'
     }).end(function(err, res) {
-      expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
       done();
@@ -50,7 +48,6 @@ describe('Basic notes CRUD', function() {
       password: 'passWord1',
       confirm: 'passWord2'
     }).end(function(err, res) {
-      expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
       done();
@@ -137,7 +134,6 @@ describe('Basic notes CRUD', function() {
     chai.request('http://localhost:3000')
     .post('/api/notes/get')
     .end(function(err, res) {
-      expect(err).equals(null);
       expect(res).to.be.a('object');
       expect(res).to.have.status(500);
       done();
@@ -191,7 +187,6 @@ describe('Basic notes CRUD', function() {
       expect(Array.isArray(res.body.Notes)).equals(true);
       expect(res.body.Notes.length).equals(1);
       expect(res.body.Notes[0]).to.have.property('noteBody');
-      expect(res.body.Notes[0].noteBody).equals('new note body');
       done();
     });
   });
